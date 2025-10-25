@@ -1,6 +1,6 @@
 ## Cómo descargar datos con APIs (introducción no técnica)
 
-Este repositorio reúne scripts listos para usar que descargan datos económicos de fuentes públicas. El objetivo de este documento es explicar, en términos sencillos, qué es una API, por qué nos interesa usarla y cómo empezar en 10 minutos con los ejemplos incluidos para Python, R, MATLAB y Stata.
+Este repositorio reúne scripts listos para usar que descargan datos económicos de fuentes públicas. El objetivo de este documento es explicar, en términos sencillos, qué es una API, por qué nos interesa usarla y cómo empezar en 10 minutos con los ejemplos incluidos para Python, R y MATLAB.
 
 ## ¿Qué es una API y por qué usarla?
 
@@ -22,7 +22,7 @@ Este repositorio reúne scripts listos para usar que descargan datos económicos
 ## ¿Qué incluye este repositorio?
 
 ### Estructura por lenguaje
-  - `python/`, `R/`, `matlab/`, `stata/` contienen subcarpetas por fuente (p. ej. `oecd/`, `eurostat/`, `fred/`).
+  - `python/`, `R/`, `matlab/` contienen subcarpetas por fuente (p. ej. `oecd/`, `eurostat/`, `fred/`).
   - En cada subcarpeta hay:
     - Un script de función principal (p. ej. `oecd_function.*`).
     - Un ejemplo que hace uso de la función principal (p. ej. `oecd_example.*`).
@@ -47,7 +47,7 @@ Este repositorio reúne scripts listos para usar que descargan datos económicos
 
 ## Cómo empezar en 5 minutos
 
-1) **Elige lenguaje**: abre la carpeta de tu preferencia (`python/`, `R/`, `matlab/`, `stata/`).
+1) **Elige lenguaje**: abre la carpeta de tu preferencia (`python/`, `R/`, `matlab/`).
 
 2) **Elige fuente**: entra en la subcarpeta (p. ej. `python/oecd/`, `R/eurostat/`).
 

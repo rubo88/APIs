@@ -15,7 +15,18 @@ program define ine_jaxi_function, rclass
 
     // Download to a temp file
     tempfile tmpcsv
-    quietly copy "`url'" "`tmpcsv'", replace
+    cap noi quietly copy "`url'" "`tmpcsv'", replace
+    if _rc {
+        di as error "Stata copy failed (rc = " _rc ") — falling back to curl"
+        // Fallback with curl (follow redirects, relaxed TLS)
+        !curl -sSLk --retry 3 --fail -o "`tmpcsv'" "`url'"
+        // Verify the file was created; don't trust _rc retained from prior failure
+        capture confirm file "`tmpcsv'"
+        if _rc {
+            di as error "curl did not produce temp file"
+            error 5100
+        }
+    }
 
     // Return path so caller can import
     return local csvfile "`tmpcsv'"
