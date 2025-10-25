@@ -17,7 +17,6 @@ library(jsonlite)
 indicator_id <- 10211
 output_name <- "esios_precio_hoy"
 out_file <- paste0("data/", output_name, ".csv")
-
 token <- Sys.getenv("ESIOS_TOKEN")
 # --- Crear directorio de datos si no existe ---
 if (!dir.exists("data")) dir.create("data", recursive = TRUE, showWarnings = FALSE)

@@ -9,7 +9,6 @@ source("esios_function.R")
 # Objetivo: promedio nacional por día del último mes
 
 # Clave API
-
 token <- Sys.getenv("ESIOS_TOKEN")
 
 # Fechas ISO8601 (UTC)
