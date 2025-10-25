@@ -13,24 +13,20 @@ library(httr)
 library(jsonlite)
 
 # --- Parámetros editables ---
-# Indicador de precio diario/horario del mercado (por defecto, mercado spot)
-indicator_id <- 1001
+# Indicador de precio Precio medio horario final suma de componentes
+indicator_id <- 10211
 output_name <- "esios_precio_hoy"
 out_file <- paste0("data/", output_name, ".csv")
 
-# Token personal desde variable de entorno
-token <- Sys.getenv("ESIOS_TOKEN", unset = "")
-if (token == "") {
-  stop("Debe definir la variable de entorno ESIOS_TOKEN con su token personal de e·sios.")
-}
-
+token <- Sys.getenv("ESIOS_TOKEN")
 # --- Crear directorio de datos si no existe ---
 if (!dir.exists("data")) dir.create("data", recursive = TRUE, showWarnings = FALSE)
 
-# --- Fechas: hoy UTC ---
-today <- Sys.Date()
-start_date <- paste0(format(today, "%Y-%m-%d"), "T00:00:00Z")
-end_date   <- paste0(format(today, "%Y-%m-%d"), "T23:59:59Z")
+# --- Fechas: último mes (UTC) ---
+end_date_date <- Sys.Date()
+start_date_date <- end_date_date - 30
+start_date <- paste0(format(start_date_date, "%Y-%m-%d"), "T00:00:00Z")
+end_date   <- paste0(format(end_date_date, "%Y-%m-%d"), "T23:59:59Z")
 
 # --- Descargar JSON ---
 base_url <- paste0("https://api.esios.ree.es/indicators/", indicator_id)
@@ -41,7 +37,18 @@ hdrs <- httr::add_headers(
   "Content-Type" = "application/json"
 )
 
-res <- httr::GET(base_url, query = list(start_date = start_date, end_date = end_date), hdrs)
+res <- httr::GET(
+  base_url,
+  query = list(
+    start_date = start_date,
+    end_date = end_date,
+    time_agg = "avg",
+    time_trunc = "day",
+    geo_agg = "avg",
+    geo_trunc = "country"
+  ),
+  hdrs
+)
 if (httr::http_error(res)) stop(sprintf("ESIOS request failed [%s]", httr::status_code(res)))
 
 txt <- httr::content(res, as = "text", encoding = "UTF-8")
