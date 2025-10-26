@@ -1,78 +1,89 @@
-# Descargador mínimo FMI (SDMX-JSON CompactData -> CSV)
-#
+## Descargador mínimo de IMF SDMX 3.0 (CSV)
 # Cómo personalizar:
-# - Cambie 'dataset' por el identificador del dataset del FMI (p. ej., "IFS")
-# - Cambie 'key' por la clave SDMX (p. ej., "M.ES.PCPI_IX")
-# - Ajuste 'startPeriod'/'endPeriod' si desea limitar el periodo
-# - Cambie 'output_name' para el archivo CSV
+# - Cambiar agency_identifier, dataset_identifier y dataset_version para seleccionar el dataset.
+# - Cambiar data_selection para seleccionar las dimensiones del dataset. Buscar los datos en la web de IMF. Pinchar en ver el id de los valores y remplazar en el orden que aparecen las variables.
+# - Cambiar filter_date para seleccionar las fechas del dataset.
+# - Cambiar params para seleccionar los parámetros de la consulta.
+# - Cambiar output_name para definir el nombre del archivo de salida.
 
 library(httr)
-library(jsonlite)
 
+#setwd("R/imf")
+#Request
+#https://api.imf.org/external/sdmx/3.0/data/{context}/{agencyID}/{resourceID}/{version}/{key}[?c][&updatedAfter][&firstNObservations][&lastNObservations][&dimensionAtObservation][&attributes][&measures][&includeHistory][&asOf]
+
+########################################################
 # --- Parámetros editables ---
-dataset <- "IFS"                 # Dataset SDMX del FMI (International Financial Statistics)
-key <- "M.ES.PCPI_IX"           # Frecuencia.País.Indicador (ejemplo IPC España, indice)
-startPeriod <- "2018"
-endPeriod <- "2023"
-output_name <- "imf_ejemplo"
-out_file <- paste0("data/", output_name, ".csv")
+########################################################
+# URL base de la API
+base_url <- "https://api.imf.org/external/sdmx/3.0/data/dataflow/"
 
-# --- Crear directorio de datos si no existe ---
-if (!dir.exists("data")) dir.create("data", recursive = TRUE, showWarnings = FALSE)
+# Identificadores de dataset
+agency_identifier <- "IMF.STA"
+dataset_identifier <- "QNEA"
+dataset_version <- "+"                       # '+' for latest version
 
-# --- Construcción de URL y descarga ---
-base_url <- "https://dataservices.imf.org/REST/SDMX_JSON.svc"
-url <- paste0(base_url, "/CompactData/", dataset, "/", utils::URLencode(key, reserved = TRUE))
-params <- list(startPeriod = startPeriod, endPeriod = endPeriod)
+# Variables de la consulta (separar por + varios valores o usar '*')
+# Use el key para filtrar país(es) y evite c[COUNTRY] si el servidor lo ignora
+data_selection <- "ESP+FRA.B1GQ.Q.SA.XDC.Q"      # COUNTRY.INDICATOR.PRICE_TYPE.S_ADJUSTMENT.TYPE_OF_TRANSFORMATION.FREQUENCY
 
-res <- httr::GET(url, query = params, httr::accept("application/json"))
-if (httr::http_error(res)) stop(sprintf("IMF request failed [%s]", httr::status_code(res)))
+# Filtro de fecha (puede contener múltiples condiciones unidas con '+')
+# Ejemplo mensual: ge:2020-01+le:2020-12
+# Ejemplo trimestral: ge:2020-Q1+le:2020-Q4
+filter_date <- list(
+  TIME_PERIOD = c("ge:2020-Q1", "le:2020-Q4"))
 
-txt <- httr::content(res, as = "text", encoding = "UTF-8")
-obj <- jsonlite::fromJSON(txt, simplifyVector = FALSE)
+# Parametros de la consulta
+params <- list(
+  dimensionAtObservation = "TIME_PERIOD",  # At the observation level
+  attributes = "dsd",                      # Data Structure Definition
+  measures = "all",                        # All measures
+  includeHistory = "false"                 # No history
+)
 
-# Extraer filas (serie -> observaciones)
-extract_series_df <- function(ser) {
-  nms <- names(ser)
-  attr_names <- nms[startsWith(nms, "@")]
-  dim_values <- if (length(attr_names)) lapply(attr_names, function(n) ser[[n]]) else list()
-  names(dim_values) <- if (length(attr_names)) sub("^@", "", attr_names) else character(0)
+# Nombre del archivo de salida
+output_name <- "imf_min.csv"
 
-  obs <- ser$Obs
-  if (is.null(obs)) return(NULL)
-  if (is.list(obs) && !is.null(obs[["@TIME_PERIOD"]])) obs <- list(obs)
+########################################################
+# -- Construir la URL y query ---
+########################################################
+# -- Construir la URL ---
+full_url <- paste0(
+  base_url,
+  agency_identifier, "/",
+  dataset_identifier, "/",
+  utils::URLencode(dataset_version, reserved = TRUE), "/",
+  utils::URLencode(data_selection, reserved = TRUE)
+)
 
-  make_obs_row <- function(o) {
-    tp <- o[["@TIME_PERIOD"]]; val <- o[["@OBS_VALUE"]]
-    val_num <- suppressWarnings(as.numeric(val))
-    data.frame(
-      TIME_PERIOD = if (!is.null(tp)) tp else NA_character_,
-      OBS_VALUE = if (!is.na(val_num)) val_num else suppressWarnings(as.numeric(NA)),
-      stringsAsFactors = FALSE
-    )
-  }
-  obs_rows <- lapply(obs, make_obs_row)
-  obs_df <- do.call(rbind, obs_rows)
-
-  if (length(dim_values)) {
-    dim_df <- as.data.frame(dim_values, stringsAsFactors = FALSE)
-    dim_df_rep <- dim_df[rep(1, nrow(obs_df)), , drop = FALSE]
-    cbind(dim_df_rep, obs_df, stringsAsFactors = FALSE)
-  } else {
-    obs_df
+# -- Construir la query ---
+query <- params
+if (length(filter_date)) {
+  for (nm in names(filter_date)) {
+    vals <- filter_date[[nm]]
+    if (is.null(vals) || length(vals) == 0) next
+    query[[sprintf("c[%s]", nm)]] <- paste(vals, collapse = "+")
   }
 }
 
-data_set <- obj$CompactData$DataSet
-series_list <- if (!is.null(data_set)) data_set$Series else NULL
-if (is.null(series_list)) stop("Estructura inesperada; falta 'Series'")
-if (is.list(series_list) && !is.null(series_list$Obs)) series_list <- list(series_list)
+# -- Construir los headers ---
+headers <- httr::add_headers(
+  `Cache-Control` = "no-cache",
+  Accept = "application/vnd.sdmx.data+csv;version=1.0.0, text/csv"
+)
 
-rows <- lapply(series_list, extract_series_df)
-rows <- rows[!vapply(rows, is.null, logical(1))]
-if (!length(rows)) stop("Sin filas devueltas por la API del FMI")
-df <- do.call(rbind, rows)
+########################################################
+# -- Hacer la petición ---
+########################################################
+res <- httr::GET(full_url, query = query, headers, httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L))
+httr::stop_for_status(res)
 
-utils::write.csv(df, out_file, row.names = FALSE, na = "")
+########################################################
+# -- Guardar el resultado ---
+########################################################
+txt <- httr::content(res, as = "text", encoding = "UTF-8")
+df <- read.csv(text = txt, stringsAsFactors = FALSE)
+utils::write.csv(df, output_name, row.names = FALSE, na = "")
+
 
 
