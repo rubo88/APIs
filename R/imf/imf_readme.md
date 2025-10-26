@@ -46,13 +46,9 @@ str(df)
 ## Sintaxis de la API (FMI SDMX CompactData)
 Formato general:
 ```
-https://dataservices.imf.org/REST/SDMX_JSON.svc/CompactData/{DATASET}/{KEY}?startPeriod=YYYY&endPeriod=YYYY
+https://api.imf.org/external/sdmx/3.0/data/{context}/{agencyID}/{resourceID}/{version}/{key}[?c][&updatedAfter][&firstNObservations][&lastNObservations][&dimensionAtObservation][&attributes][&measures][&includeHistory][&asOf]
 ```
 
-Ejemplo equivalente:
-```
-https://dataservices.imf.org/REST/SDMX_JSON.svc/CompactData/IFS/M.ES.PCPI_IX?startPeriod=2018&endPeriod=2023
-```
 
 ## Enlaces útiles
 - Conocimiento/soporte del FMI (categoría API/SDMX): https://datasupport.imf.org/knowledge?id=knowledge_category&sys_kb_id=d41858e747294ad8805d07c4f16d43e0&category_id=9959b2bc1b6391903dba646fbd4bcb6a
