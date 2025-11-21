@@ -6,7 +6,7 @@
 # - Cambiar params para seleccionar los parámetros de la consulta.
 # - Cambiar output_name para definir el nombre del archivo de salida.
 
-#setwd("R/imf")
+setwd("R/imf")
 library(httr)
 
 # Asegurar ruta correcta al ejecutar desde la raíz del repo

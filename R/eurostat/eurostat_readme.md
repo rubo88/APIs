@@ -83,5 +83,11 @@ https://ec.europa.eu/eurostat/api/dissemination/sdmx/3.0/data/dataflow/ESTAT/nam
 
 ## Enlaces útiles
 - Guía de consultas de datos (SDMX 3.0, Eurostat): [API - Detailed guidelines - SDMX3.0 API - data query](https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-detailed-guidelines/sdmx3-0/data-query)
-
-
+- [API - Getting started with statistics API - Retrieving your first content](https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/api#APIGettingstartedwithstatisticsAPI-Retrievingyourfirstcontent)
+- https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-detailed-guidelines/sdmx3-0
+- [API - Detailed guidelines - SDMX3.0 API - data query](https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-detailed-guidelines/sdmx3-0/data-query)
+- https://jsonstat.com/eurostat/
+- https://ec.europa.eu/eurostat/web/query-builder/tool
+- toc: https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=en  
+https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/xml
+- Metabase: https://ec.europa.eu/eurostat/api/dissemination/catalogue/metabase.txt.gz

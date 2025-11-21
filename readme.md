@@ -15,9 +15,13 @@ Este repositorio reúne scripts listos para usar que descargan datos económicos
 - Si utilizas tu **ordenador personal** o el **Portal del Investigador**, puedes empezar ya mismo a usar APIs con los ejemplos que tienes aquí.
 - Si quieres usarlos en el **ordenador corporativo**:
 
-  1) Necesitas primero que te instalen **ProxyCap**. Rellena el pdf XXXX y abre una Peticion de Trabajo adjuntando el pdf.
-  2) Una vez instalado, tienes que activar ProxyCap. Para ello vete a ....
-  3) Recuerda apagar ProxyCap cuando no lo uses.
+  1) Necesitas primero que te instalen **ProxyCap**. Rellena este pdf [Frm123PeticionWebscraping_PROD.pdf](https://berso.sharepoint.com/sites/msteams_cc085a/Documentos%20compartidos/Rinc%C3%B3n%20Tecnol%C3%B3gico/APIs/Frm123PeticionWebscraping_PROD.pdf?csf=1&web=1&e=FULRxG)  y abre una Peticion de Trabajo adjuntando el pdf.
+  2) Contactarán contigo para que te instalen ProxyCap.
+  3) Una vez instalado, tienes que activar ProxyCap. Para ello:
+  - Vete a la barra de tareas y haz click derecho sobre ella y abre el Administrador de Tareas.
+  - Ve a la pestaña de Servicios y busca ProxyCap.
+  - Haz click derecho sobre él y selecciona "Iniciar".
+  - Cuando no lo estes usando, haz click derecho sobre él y selecciona "Detener".
 
 ## ¿Qué incluye este repositorio?
 
@@ -40,10 +44,12 @@ Este repositorio reúne scripts listos para usar que descargan datos económicos
     - **INE**
     - **World Bank**
     - **COMEXT (Eurostat Comercio Exterior)**
+    - **ESIOS (Red Eléctrica de España)**
+    - **IMF (Fondo Monetario Internacional)**
 
 - Si necesitas usar **otras fuentes** en el ordenador corporativo, rellenalas en el pdf XXX y envialo para hacer una petición de trabajo.
 
-- El Agente Copilot (o cualquier otra IA) que hemos creado puede ayudarte a **escribir los códigos para otras fuentes y arreglar los errores**. Si no lo consigues, pide ayuda en el foro de Teams.
+- El [Agente Copilot](https://m365.cloud.microsoft:443/chat/?titleId=T_ef306b0f-8313-c093-1464-1ac424463978&source=embedded-builder) (o cualquier otra IA) que hemos creado puede ayudarte a **escribir los códigos para otras fuentes y arreglar los errores**. Si no lo consigues, pide ayuda en el foro de Teams.
 
 ## Cómo empezar en 5 minutos
 
@@ -66,7 +72,7 @@ Este repositorio reúne scripts listos para usar que descargan datos económicos
 
 ## Preguntas frecuentes (FAQ)
 
-- **No uso ninguno de estos lenguajes, hay algo para usar las APIs directamente en Excel?** Sí, puedes descargar series directamente a tu fichero Excel usando Power Query. Hemos creado ejemplos y una documentación separada para hacerlo. 
+- **No uso ninguno de estos lenguajes, hay algo para usar las APIs directamente en Excel?** Sí, puedes descargar series directamente a tu fichero Excel usando Power Query. Estramos creado ejemplos y una documentación separada para hacerlo. 
 - **La fuente que me interesa no está en el repositorio, tiene API?** Depende, consulta en las webs de las fuentes para ver si tienen API y si es así, pide ayuda al Agente Copilot Ayudante de APIs o en el foro de Teams para poder usarla. Desgraciadamente, muchas fuentes (muchos ministerios, Datacomex, etc) no disponen de API. En ese caso, una automatización con python puede ser una opción.
 
 ## Soporte
