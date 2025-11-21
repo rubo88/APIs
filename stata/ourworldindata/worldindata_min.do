@@ -1,0 +1,1 @@
+import delimited "https://ourworldindata.org/grapher/labor-productivity-per-hour-pennworldtable.csv?v=1&csvType=full&useColumnShortNames=true", encoding("utf-8") clear

@@ -4,3 +4,6 @@ _old/
 *.pdf
 API KEYS.txt
 *.ini
+entxt/
+*.stswp
+*.zip

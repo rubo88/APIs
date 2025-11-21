@@ -1,0 +1,1 @@
+import delimited "https://www.ine.es/jaxiT3/files/t/es/csv_bdsc/67821.csv", encoding("utf-8") clear
