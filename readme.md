@@ -14,27 +14,21 @@ Este repositorio reúne scripts listos para usar que descargan datos económicos
 
 ## Requisitos previos
 - Si utilizas tu **ordenador personal** o el **Portal del Investigador**, puedes empezar ya mismo a usar APIs con los ejemplos que tienes aquí.
-- Si quieres usarlos en el **ordenador corporativo**:
-
-  1) Necesitas primero que te instalen **ProxyCap**. Rellena este pdf [Frm123PeticionWebscraping_PROD.pdf](https://berso.sharepoint.com/sites/msteams_cc085a/Documentos%20compartidos/Rinc%C3%B3n%20Tecnol%C3%B3gico/APIs/Frm123PeticionWebscraping_PROD.pdf?csf=1&web=1&e=FULRxG)  y abre una Peticion de Trabajo adjuntando el pdf.
-  2) Contactarán contigo para que te instalen ProxyCap.
-  3) Una vez instalado, tienes que activar ProxyCap. Para ello:
-  - Vete a la barra de tareas y haz click derecho sobre ella y abre el Administrador de Tareas.
-  - Ve a la pestaña de Servicios y busca ProxyCap.
-  - Haz click derecho sobre él y selecciona "Iniciar".
-  - Cuando no lo estes usando, haz click derecho sobre él y selecciona "Detener".
+- Si quieres usarlos en el **ordenador corporativo**, necesitas primero que te instalen **ProxyCap**. 
 
 ## ¿Qué incluye este repositorio?
+Ejemplos sencillos de uso para cuatro lenguajes de programación: Python, R, MATLAB y Stata. Para varias fuentes. En cada lenguaje/fuente hay varios ejemplos de código según el nivel de uso que quieras hacer.
 
 ### Estructura por lenguaje
   - `python/`, `R/`, `matlab/`, `stata/` contienen subcarpetas por fuente (p. ej. `oecd/`, `eurostat/`, `fred/`).
   - En cada subcarpeta hay:
-    - Un script de función principal (p. ej. `oecd_function.*`).
-    - Un ejemplo que hace uso de la función principal (p. ej. `oecd_example.*`).
-    - Un ejemplo “mínimo” autocontenido (sin llamar a la función principal) (`*_min.*`).
-    - Ficheros CSV de muestra descargados (`*_example.csv`, `*_min.csv`).
+    - Un script que descarga y lee el csv directamente del **link de la API en una línea** (p. ej. `ecb_onlylink.*`). **Lo más sencillo** para empezar si no necesitas filtrar los datos.
+    - Un script de **función principal** (p. ej. `ecb_function.*`). Si quieres tener **un código más limpio** y modular, llama a la función principal.
+    - Un **ejemplo que hace uso de la función principal** (p. ej. `ecb_example.*`). Si quieres ver un ejemplo de uso de la **función principal**.
+    - Un **ejemplo “mínimo” autocontenido** (sin llamar a la función principal) (`ecb_min.*`). Si quieres ver un ejemplo de uso con filtros y sin modular el código. Esto es **lo menos recomendable**.
+    - Ficheros CSV de muestra descargados (`ecb_example.csv`, `ecb_min.csv`).
 
-- **Documentación especifica**: cada subcarpeta tiene su propio `*_readme.md` con detalles (parámetros, enlaces oficiales, ejemplos).
+- **Documentación específica**: cada subcarpeta tiene su propio `ecb_readme.md` con detalles (parámetros, enlaces oficiales, ejemplos).
 
 ### Fuentes incluidas
 - Las fuentes incluidas en este repositorio y que se pueden usar desde el ordenador corporativo son:
@@ -49,37 +43,30 @@ Este repositorio reúne scripts listos para usar que descargan datos económicos
     - **IMF (Fondo Monetario Internacional)**
     - **Our World in Data**
 
-- Si necesitas usar **otras fuentes** en el ordenador corporativo, rellenalas en el pdf XXX y envialo para hacer una petición de trabajo.
 
-- El [Agente Copilot](https://m365.cloud.microsoft:443/chat/?titleId=T_ef306b0f-8313-c093-1464-1ac424463978&source=embedded-builder) (o cualquier otra IA) que hemos creado puede ayudarte a **escribir los códigos para otras fuentes y arreglar los errores**. Si no lo consigues, pide ayuda en el foro de Teams.
 
 ## Cómo empezar en 5 minutos
 
-1) **Elige lenguaje**: abre la carpeta de tu preferencia (`python/`, `R/`, `matlab/`).
+1) **Elige lenguaje**: abre la carpeta de tu preferencia (`python/`, `R/`, `matlab/` o `stata/`).
 
 2) **Elige fuente**: entra en la subcarpeta (p. ej. `python/oecd/`, `R/eurostat/`).
 
-3) **Lee la documentación especifica**: echa un vistazo al `*_readme.md` de la fuente para ver los parámetros y ejemplos.
+3) **Lee la documentación específica**: echa un vistazo al `*_readme.md` de la fuente para ver los parámetros y ejemplos.
 
 4) **Ejecuta el ejemplo**: los ejemplos generan un CSV en la misma carpeta. Así te aseguras de que todo  está funcionando correctamente.
 
 
 5) **Adapta el ejemplo**: cambia identificadores de series, países, fechas u otros filtros buscando en la web de la fuente o preguntando al Agente Copilot.
 
-6) **Integralo en tu propio proyecto**
+6) **Intégralo en tu propio proyecto**
 
-> **Errores**: Si tienes problemas, pregunta al Agente Copilot Ayudante de APIs, que conoce al dedillo el repositorio y te puede ayudar a escribir los códigos y arreglar los errores. También puedes preguntar en el foro de Teams y seguro que alguién te puede ayudar.
 
 > **Claves de API (si aplica)**: Algunas fuentes pueden requerir una clave de acceso. Consulta el `*_readme.md` de esa fuente para obtenerla y configurarla (normalmente como variable de entorno) antes de ejecutar el ejemplo. 
 
 ## Preguntas frecuentes (FAQ)
 
-- **No uso ninguno de estos lenguajes, hay algo para usar las APIs directamente en Excel?** Sí, puedes descargar series directamente a tu fichero Excel usando Power Query. Estramos creado ejemplos y una documentación separada para hacerlo. 
-- **La fuente que me interesa no está en el repositorio, tiene API?** Depende, consulta en las webs de las fuentes para ver si tienen API y si es así, pide ayuda al Agente Copilot Ayudante de APIs o en el foro de Teams para poder usarla. Desgraciadamente, muchas fuentes (muchos ministerios, Datacomex, etc) no disponen de API. En ese caso, una automatización con python puede ser una opción.
+- **No uso ninguno de estos lenguajes, ¿hay algo para usar las APIs directamente en Excel?** Sí, puedes descargar series directamente a tu fichero Excel usando Power Query. Estamos creando ejemplos y una documentación separada para hacerlo. 
+- **La fuente que me interesa no está en el repositorio, ¿tiene API?** Depende, consulta en las webs de las fuentes para ver si tienen API y si es así, pide ayuda al Agente Copilot Ayudante de APIs o en el foro de Teams para poder usarla. Desgraciadamente, muchas fuentes (muchos ministerios, Datacomex, etc) no disponen de API. En ese caso, una automatización con python puede ser una opción.
 
-## Soporte
-Hay dos formas de obtener ayuda:
-- **Agente Copilot Ayudante de APIs**: que conoce al dedillo el repositorio y te puede ayudar a escribir los códigos y arreglar los errores.
-- **Foro de Teams**: pide ayuda en el foro de Teams y seguro que alguién te puede ayudar.
 
 ---
