@@ -52,6 +52,7 @@ df <- eurostat_api_function(
 str(df)
 ```
 ## Codigos ejemplo 
+El código `eurostat_onlylink.R` es un ejemplo que descarga y lee el csv directamente del link de la API en una linea.
 El código `eurostat_min.R` es un ejemplo minimo para descargar datos de Eurostat sin usar la función `eurostat_api_function`.
 El código `eurostat_example.R` es un ejemplo de uso de la función `eurostat_api_function`.
 

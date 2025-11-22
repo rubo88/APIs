@@ -33,6 +33,7 @@ df <- ine_jaxi_api_function(
 str(df)
 ```
 ## Codigos ejemplo 
+El código `ine_jaxi_onlylink.R` es un ejemplo que descarga y lee el csv directamente del link de la API en una linea.
 El código `ine_jaxi_min.R` es un ejemplo mínimo para descargar datos del INE sin usar la función `ine_jaxi_api_function`.
 El código `ine_jaxi_example.R` es un ejemplo de uso de la función `ine_jaxi_api_function`.
 

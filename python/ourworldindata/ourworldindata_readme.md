@@ -11,6 +11,7 @@ Este documento muestra cómo importar datos directamente desde los gráficos de 
 OWID permite descargar los datos detrás de sus gráficos en formato CSV. El script apunta directamente a la URL de descarga de datos de un gráfico específico y guarda el archivo localmente.
 
 ## Ejemplo de uso (`worldindata_min.py`)
+El código `worldindata_onlylink.py` es un ejemplo que descarga y lee el csv directamente del link de la API en una linea.
 
 ```python
 import pandas as pd

@@ -36,6 +36,7 @@ df.to_csv("python/imf_example.csv", index=False)
 ```
 
 ## Códigos ejemplo 
+- `imf_onlylink.py`: ejemplo que descarga y lee el csv directamente del link de la API en una linea (usando `pandasdmx`).
 - `imf_min.py`: ejemplo mínimo para construir la URL SDMX-CSV y guardar en CSV.
 - `imf_example.py`: ejemplo de uso de la función `imf_api_function` devolviendo un DataFrame y exportándolo a CSV.
 

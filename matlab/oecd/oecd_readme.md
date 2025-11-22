@@ -27,6 +27,7 @@ writetable(T, 'matlab/oecd/oecd_example.csv', 'FileType', 'text');
 ```
 
 ## Códigos ejemplo 
+- `oecd_onlylink.m`: ejemplo que descarga y lee el csv directamente del link de la API en una linea.
 - `oecd_min.m`: ejemplo mínimo para construir la URL y guardar en CSV.
 - `oecd_example.m`: ejemplo de uso de la función `oecd_api_function` devolviendo una tabla y exportándola a CSV.
 

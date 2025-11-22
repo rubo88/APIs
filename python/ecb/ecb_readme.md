@@ -32,6 +32,12 @@ df = ecb_api_function(
 df.to_csv("ecb_ejemplo.csv", index=False)
 ```
 
+## Códigos ejemplo
+- `ecb_onlylink.py`: ejemplo que descarga y lee el csv directamente del link de la API en una linea.
+- `ecb_min.py`: ejemplo mínimo para descargar datos del BCE sin usar la función `ecb_api_function`.
+- `ecb_example.py`: ejemplo de uso de la función `ecb_api_function`.
+
+
 ## Notas
 - El parámetro `format=csvdata` se añade automáticamente.
 

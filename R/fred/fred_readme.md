@@ -81,6 +81,7 @@ df_gdp_vdate <- fred_api_function(
 )
 ```
 ## Codigos ejemplo 
+El código `fred_onlylink.R` es un ejemplo que descarga y lee el csv directamente del link de la API en una linea.
 El código `fred_min.R` es un ejemplo mínimo que descarga un CSV de fredgraph sin usar la función.
 El código `fred_example.R` es un ejemplo de uso de ambas funciones.
 

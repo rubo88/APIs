@@ -40,6 +40,7 @@ df.to_csv("eurostat_ejemplo.csv", index=False)
 - Se usa el encabezado `Accept: application/vnd.sdmx.data+csv; version=2.0.0`.
 
 ## Códigos ejemplo 
+- `eurostat_onlylink.py`: ejemplo que descarga y lee el csv directamente del link de la API en una linea.
 - `eurostat_min.py` es un ejemplo mínimo para descargar datos de Eurostat sin usar la función `eurostat_api_function`.
 - `eurostat_example.py` es un ejemplo de uso de la función `eurostat_api_function`.
 

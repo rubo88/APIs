@@ -27,6 +27,7 @@ writetable(T_api,   'matlab/fred/fred_api_example.csv',   'FileType', 'text');
 ```
 
 ## Códigos ejemplo 
+- `fred_onlylink.m`: ejemplo que descarga y lee el csv directamente del link de la API en una linea.
 - `fred_min.m`: ejemplo mínimo que descarga un CSV de fredgraph.
 - `fred_example.m`: ejemplo de uso de ambas funciones.
 

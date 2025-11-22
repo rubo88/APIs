@@ -31,6 +31,7 @@ writetable(T, 'matlab/eurostat/eurostat_example.csv', 'FileType', 'text');
 ```
 
 ## Códigos ejemplo 
+- `eurostat_onlylink.m`: ejemplo que descarga y lee el csv directamente del link de la API en una linea.
 - `eurostat_min.m`: ejemplo mínimo para construir la URL SDMX-CSV y guardar en CSV.
 - `eurostat_example.m`: ejemplo de uso de la función `eurostat_api_function` devolviendo una tabla y exportándola a CSV.
 

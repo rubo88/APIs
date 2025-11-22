@@ -30,6 +30,7 @@ writetable(T, 'matlab/ine/ine_jaxi_example.csv', 'Delimiter', ';', 'FileType', '
 ```
 
 ## Códigos ejemplo 
+- `ine_jaxi_onlylink.m`: ejemplo que descarga y lee el csv directamente del link de la API en una linea.
 - `ine_jaxi_min.m`: ejemplo mínimo para descargar datos del INE y guardarlos en CSV directamente.
 - `ine_jaxi_example.m`: ejemplo de uso de la función `ine_jaxi_function` devolviendo una tabla y exportándola a CSV.
 

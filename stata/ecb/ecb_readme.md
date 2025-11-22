@@ -17,7 +17,7 @@ global seriesKey "M.U2.Y.V.M30.X.I.U2.2300.Z01.A"
 * La URL incluye ?format=csvdata para asegurar compatibilidad con import delimited
 import delimited "https://data-api.ecb.europa.eu/service/data/${dataset}/${seriesKey}?format=csvdata", encoding("utf-8") clear
 ```
-
+ 
 ## Personalización
 Cambie las globales `dataset` y `seriesKey` por los valores deseados. Puede encontrar estos códigos en el [ECB Data Portal](https://data.ecb.europa.eu/).
 

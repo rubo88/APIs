@@ -25,6 +25,12 @@ df_obs = fred_api_function(series_id="GDPC1", observation_start="2000-01-01")
 df_obs.to_csv("fred_api_ejemplo.csv", index=False)
 ```
 
+## Códigos ejemplo
+- `fred_onlylink.py`: ejemplo que descarga y lee el csv directamente del link de la API en una linea.
+- `fred_min.py`: ejemplo mínimo para descargar datos de FRED sin usar la función.
+- `fred_example.py`: ejemplo de uso de la función `fred_api_function`.
+
+
 ## Notas
 - La API v1 admite parámetros como `units`, `frequency`, `aggregation_method`, etc. con validación básica.
 

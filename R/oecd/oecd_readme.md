@@ -40,6 +40,7 @@ df <- oecd_api_function(
 str(df)
 ```
 ## Codigos ejemplo 
+El código `oecd_onlylink.R` es un ejemplo que descarga y lee el csv directamente del link de la API en una linea.
 El código `oecd_min.R` es un ejemplo mínimo para descargar datos de la OCDE sin usar la función `oecd_api_function`.
 El código `oecd_example.R` es un ejemplo de uso de la función `oecd_api_function`.
 

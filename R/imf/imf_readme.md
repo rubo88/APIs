@@ -35,6 +35,7 @@ str(df)
 ```
 
 ## Códigos ejemplo
+- `imf_onlylink.R`: ejemplo que descarga y lee el csv directamente del link de la API en una linea (usando `rsdmx`).
 - `imf_min.R`: ejemplo mínimo que descarga y guarda CSV sin usar la función `imf_api_function`.
 - `imf_example.R`: ejemplo de uso de la función `imf_api_function` y guardado de CSV.
 

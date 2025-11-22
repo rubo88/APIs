@@ -33,6 +33,7 @@ df <- ecb_api_function(
 str(df)
 ```
 ## Codigos ejemplo 
+El código `ecb_onlylink.R` es un ejemplo que descarga y lee el csv directamente del link de la API en una linea.
 El código `ecb_min.R` es un ejemplo mínimo para descargar datos del BCE sin usar la función `ecb_api_function`.
 El código `ecb_example.R` es un ejemplo de uso de la función `ecb_api_function`.
 

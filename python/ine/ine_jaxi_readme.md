@@ -36,6 +36,7 @@ df.to_csv("ine_jaxi_example.csv", index=False, sep=";")
 ```
 
 ## Códigos ejemplo
+- `ine_jaxi_onlylink.py`: ejemplo que descarga y lee el csv directamente del link de la API en una linea.
 - `ine_jaxi_min.py`: ejemplo mínimo que descarga y guarda `ine_jaxi_min.csv` en esta carpeta.
 - `ine_jaxi_example.py`: ejemplo que descarga y guarda `ine_jaxi_example.csv` en esta carpeta.
 

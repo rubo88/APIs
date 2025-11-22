@@ -33,6 +33,7 @@ writetable(T, 'matlab/imf/imf_example.csv', 'FileType', 'text');
 ```
 
 ## Códigos ejemplo 
+- `imf_onlylink.m`: ejemplo que descarga y lee el xml directamente del link de la API en una linea (usando `webread`).
 - `imf_min.m`: ejemplo mínimo para construir la URL SDMX-CSV y guardar en CSV.
 - `imf_example.m`: ejemplo de uso de la función `imf_api_function` devolviendo una tabla y exportándola a CSV.
 

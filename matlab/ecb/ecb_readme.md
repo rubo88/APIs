@@ -20,10 +20,11 @@ Este documento explica cómo usar la función en `matlab/ecb/ecb_function.m` par
 ```matlab
 addpath('matlab');
 T = ecb_api_function('BSI', 'M.U2.Y.V.M30.X.I.U2.2300.Z01.A');
-writetable(T, 'matlab/ecb/ecb_example.csv', 'FileType', 'text');
+writetable(T, 'matlab/ecb/ecb_example.csv', 'FileType', 'text'); 
 ```
 
 ## Códigos ejemplo 
+- `ecb_onlylink.m`: ejemplo que descarga y lee el csv directamente del link de la API en una linea.
 - `ecb_min.m`: ejemplo mínimo para descargar datos del BCE y guardarlos en CSV.
 - `ecb_example.m`: ejemplo de uso de la función `ecb_api_function` devolviendo una tabla y exportándola a CSV.
 

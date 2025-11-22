@@ -35,6 +35,7 @@ df.to_csv("oecd_ejemplo.csv", index=False)
 ```
 
 ## Códigos ejemplo 
+- `oecd_onlylink.py`: ejemplo que descarga y lee el csv directamente del link de la API en una linea.
 - `oecd_min.py` es un ejemplo mínimo para descargar datos de la OCDE sin usar la función `oecd_api_function`.
 - `oecd_example.py` es un ejemplo de uso de la función `oecd_api_function`.
 

@@ -7,6 +7,7 @@ Este repositorio reúne scripts listos para usar que descargan datos económicos
 - **API**: una forma estándar de pedir datos a un servidor, como si fuera una “ventanilla” automatizada. En lugar de descargar manualmente ficheros desde una web, un script hace la petición y recibe una base de datos completa o una parte de ella filtrada.
 - **Ventajas**:
   - **Ahorro de tiempo**: automatiza tareas repetitivas y evita copiar/pegar.
+  - **Ahorro de espacio**: solo descargas las partes de la base de datos que te interesan.
   - **Integración**: la obtención y actualización de datos queda integrada en tu proceso de trabajo.
   - **Actualización**: siempre trae la versión más reciente disponible.
   - **Trazabilidad**: el proceso queda documentado en el script; facilita auditoría y repetición.
