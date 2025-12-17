@@ -1,38 +1,41 @@
-# Guía rápida: FRED — `matlab/fred/fred_function.m`
+# Guía rápida: FRED con MATLAB
 
-Este documento explica cómo usar las funciones en `matlab/fred/fred_function.m` para descargar datos desde FRED, tanto con el método "fredgraph" (CSV de un gráfico compartido, sin API key) como con la API v1 (JSON, requiere API key) y obtenerlos como tablas en MATLAB.
+Este documento explica cómo usar las funciones en `matlab/fred/fred_function.m` para descargar datos desde FRED.
 
 ## Requisitos
-- MATLAB (R2019b o superior recomendado)
+- Ninguno adicional a MATLAB.
 
-## Inputs
-- **fredgraph_api_function**
-  - Obligatorio: `graphId` (identificador del gráfico compartido)
-
-- **fred_api_function**
-  - Obligatorio: `series_id` (p. ej., `"GDP"`)
-  - Opcionales: `observation_start`, `observation_end`, `realtime_start`, `realtime_end`, `limit`, `offset`, `sort_order`, `units`, `frequency`, `aggregation_method`, `output_type`, `vintage_dates`, `api_key`.
-
-## Output
-- `table` con las observaciones devueltas por cada método.
-
-## Ejemplo de uso
-```matlab
-addpath('matlab');
-T_graph = fredgraph_api_function('1wmdD');
-% setenv('FRED_API_KEY','SU_API_KEY');
-T_api = fred_api_function('GDP');
-writetable(T_graph, 'matlab/fred/fred_graph_example.csv', 'FileType', 'text');
-writetable(T_api,   'matlab/fred/fred_api_example.csv',   'FileType', 'text');
-```
-
-## Códigos ejemplo 
+## Codigos ejemplo
 - `fred_onlylink.m`: ejemplo que descarga y lee el csv directamente del link de la API en una linea.
 - `fred_min.m`: ejemplo mínimo que descarga un CSV de fredgraph.
 - `fred_example.m`: ejemplo de uso de ambas funciones.
 
-## Endpoints
-- fredgraph CSV: `https://fred.stlouisfed.org/graph/fredgraph.csv?g={graphId}`
-- API v1 observaciones: `https://api.stlouisfed.org/fred/series/observations?series_id={id}&api_key=...&file_type=json`
+## Inputs
+- **fredgraph_api_function**
+  - `graphId`: identificador del gráfico compartido (obligatorio).
 
+- **fred_api_function**
+  - `series_id`: identificador de la serie (p. ej., `"GDP"`).
+  - Opcionales: `observation_start`, `observation_end`, `realtime_start`, `realtime_end`, `limit`, `offset`, `sort_order`, `units`, `frequency`, `aggregation_method`, `output_type`, `vintage_dates`, `api_key`.
 
+## Cómo elegir inputs
+- Para `fredgraph_api_function`:
+  - Obtenga `graphId` desde el enlace compartido del gráfico (parámetro `?g=` en la URL).
+
+- Para `fred_api_function`:
+  1) Elija `series_id` (p. ej., `GDP`, esto suele estar al lado del nombre de la serie en FRED entre paréntesis).
+  2) Defina `FRED_API_KEY` como variable de entorno o pásela como argumento.
+  3) Si es necesario, cambie los otros parámetros opcionales.
+
+## Sintaxis de la API
+- **fredgraph CSV:**
+  ```
+  https://fred.stlouisfed.org/graph/fredgraph.csv?g={graphId}
+  ```
+- **API v1 observaciones:**
+  ```
+  https://api.stlouisfed.org/fred/series/observations?series_id={id}&api_key=...&file_type=json
+  ```
+
+## Output
+- `table` con las observaciones devueltas por cada método.

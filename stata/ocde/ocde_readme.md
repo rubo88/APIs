@@ -1,27 +1,21 @@
-# Guía rápida: OECD Data Explorer (CSV) — `ocde/ocde_min.do`
+# Guía rápida: OECD con Stata
 
 Este documento explica cómo descargar datos de la OCDE usando la API REST SDMX en Stata.
 
 ## Requisitos
-- Stata.
+- Stata
 
-## Descripción
-El script construye una URL para la API de la OCDE especificando la agencia, el dataset, la selección de datos y el periodo, solicitando el formato `csvfile`.
+## Codigos ejemplo
+- `ocde_min.do` es un ejemplo mínimo para descargar datos de la OCDE directamente en Stata.
 
-## Ejemplo de uso (`ocde_min.do`)
+## Inputs
+- **Obligatorios**
+  - `agency_identifier`: p. ej., `"OECD.ECO.MAD"`.
+  - `dataset_identifier`: p. ej., `"DSD_EO@DF_EO"`.
+  - `data_selection`: clave SDMX tras la `/`.
 
-```stata
-global agency_identifier "OECD.ECO.MAD"
-global dataset_identifier "DSD_EO@DF_EO"
-global data_selection "FRA+DEU.PDTY.A"
-global startPeriod "1965"
-global endPeriod "2023"
-
-import delimited "https://sdmx.oecd.org/public/rest/data/${agency_identifier},${dataset_identifier},/${data_selection}?format=csvfile&startPeriod=${startPeriod}&endPeriod=${endPeriod}", encoding("utf-8") clear
-```
-
-## Personalización
-La clave de selección (`data_selection`) sigue la estructura de dimensiones del dataset (ej. `Pais.Indicador.Frecuencia`). Puede explorar los identificadores en el [OECD Data Explorer](https://data-explorer.oecd.org/).
+- **Opcionales**
+  - `startPeriod`, `endPeriod`.
 
 ## Cómo elegir inputs
 1) Buscar el dataset en el explorador OCDE: https://data-explorer.oecd.org/
@@ -29,5 +23,15 @@ La clave de selección (`data_selection`) sigue la estructura de dimensiones del
 3) Construir la global `data_selection` con las dimensiones requeridas por el dataset (p. ej., `PAISES.VARIABLE.FRECUENCIA`).
 4) Puede filtrar por periodo modificando las globales `startPeriod` y `endPeriod`.
 
+## Sintaxis de la API (OECD SDMX)
+- **Formato general:**
+  ```
+  https://sdmx.oecd.org/public/rest/data/{agency},{dataset},{version}/{data_selection}?format=csvfile
+  ```
+
+## Output
+- Un dataset en memoria de Stata con los datos descargados.
+
 ## Enlaces útiles
-- [OECD Data API Documentation](https://data.oecd.org/api/sdmx-json-documentation/)
+- Explorador OCDE: https://data-explorer.oecd.org/
+- Documentación de la API: https://www.oecd.org/en/data/insights/data-explainers/2024/09/api.html

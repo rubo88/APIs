@@ -1,35 +1,34 @@
-# Guía rápida: FMI SDMX (CSV) — `imf/imf_min.do`
+# Guía rápida: FMI con Stata
 
 Este documento explica cómo usar el script `imf/imf_min.do` para descargar datos del FMI (servicio SDMX 3.0) directamente en Stata.
 
 ## Requisitos
 - Stata (con capacidad de conexión a internet y comando `import delimited`).
-- Conexión a internet activa.
 
-## Descripción
-El script utiliza una URL de la API SDMX 3.0 del FMI. Aunque la API soporta varios formatos, Stata puede importar directamente si la respuesta es interpretable como texto delimitado o si se construye la URL correcta.
+## Codigos ejemplo
+- `imf_min.do` es un ejemplo mínimo para descargar datos del FMI directamente en Stata.
 
-Nota: En el ejemplo mínimo se usa una consulta directa. Para consultas más complejas, verifique la documentación de la API del FMI.
-
-## Ejemplo de uso (`imf_min.do`)
-
-```stata
-* Descarga directa de datos (Ejemplo: PIB trimestral de España y Francia)
-import delimited "https://api.imf.org/external/sdmx/3.0/data/dataflow/IMF.STA/QNEA/%2B/ESP%2BFRA.B1GQ.Q.SA.XDC.Q", clear
-```
-
-## Personalización
-Para descargar otros datos, modifique la URL siguiendo la estructura de la API SDMX del FMI:
-`https://api.imf.org/external/sdmx/3.0/data/dataflow/{AgencyID}/{FlowID}/{Version}/{Key}`
+## Inputs
+- **Obligatorios**
+  - `dataset_identifier`: identificador del dataset (p. ej., "QNEA").
+  - `key`: clave SDMX completa (orden y códigos según el dataset). Ej.: "ESP+FRA.B1GQ.Q.SA.XDC.Q".
+  - `agency_identifier`: por defecto "IMF.STA".
+  - `dataset_version`: por defecto "+" (última versión).
 
 ## Cómo elegir inputs
 1) Localice el dataset y el indicador en el portal del FMI o en la documentación de SDMX.
-2) Construya la `Key` con las dimensiones requeridas por el dataset. En IFS suele ser `Frecuencia.País.Indicador` (p. ej., `M.ES.PCPI_IX`).
-3) La estructura de la URL es `.../data/dataflow/{AgencyID}/{FlowID}/{Version}/{Key}`.
-   - `AgencyID`: Identificador de la agencia (ej. `IMF.STA`).
-   - `FlowID`: Identificador del flujo de datos (ej. `QNEA`, `IFS`).
-   - `Version`: Versión del flujo (o `+` para la última).
-   - `Key`: Clave SDMX construida.
+2) Construya la `key` con las dimensiones requeridas por el dataset. En IFS suele ser `FREQ.REF_AREA.INDICATOR`.
+3) La estructura de la URL es `.../data/dataflow/{agency_identifier}/{dataset_identifier}/{dataset_version}/{key}`.
+
+## Sintaxis de la API (FMI SDMX 3.0)
+- **Formato general:**
+  ```
+  https://api.imf.org/external/sdmx/3.0/data/dataflow/{agency_identifier}/{dataset_identifier}/{dataset_version}/{key}
+  ```
+  Referencia al servicio SDMX JSON del FMI: `https://dataservices.imf.org/REST/SDMX_JSON.svc`
+
+## Output
+- Un dataset en memoria de Stata con los datos descargados.
 
 ## Enlaces útiles
-- [FMI Data Services Knowledge Base](https://datahelp.imf.org/knowledgebase/articles/1966093-how-to-use-the-api)
+- Conocimiento/soporte del FMI (categoría API/SDMX): https://datasupport.imf.org/knowledge?id=knowledge_category&sys_kb_id=d41858e747294ad8805d07c4f16d43e0&category_id=9959b2bc1b6391903dba646fbd4bcb6a

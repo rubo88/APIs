@@ -1,40 +1,38 @@
-# Guía rápida: Our World in Data (CSV) — `R/ourworldindata/worldindata_min.R`
+# Guía rápida: Our World in Data con R
 
-Este documento muestra cómo importar datos directamente desde los gráficos de Our World in Data (OWID) a R.
+Este documento explica cómo descargar datos directamente desde los gráficos de Our World in Data (OWID) en formato CSV usando R.
 
 ## Requisitos
-- R
-- jsonlite (opcional, para metadatos)
+- Paquete `utils` instalado (viene por defecto en R, se usa `read.csv`)
+- Paquete `jsonlite` (opcional, si se quieren metadatos)
 
-## Descripción
-OWID permite descargar los datos detrás de sus gráficos en formato CSV. El script apunta directamente a la URL de descarga de datos de un gráfico específico y guarda el archivo localmente.
+## Codigos ejemplo
+- `worldindata_onlylink.R` es un ejemplo que descarga y lee el csv directamente del link de la API en una linea.
+- `worldindata_min.R` es un ejemplo mínimo para descargar datos de OWID.
 
-## Ejemplo de uso (`worldindata_min.R`)
-El código `worldindata_onlylink.R` es un ejemplo que descarga y lee el csv directamente del link de la API en una linea.
-
-```r
-library(jsonlite)
-
-# Fetch the data
-df <- read.csv("https://ourworldindata.org/grapher/labor-productivity-per-hour-pennworldtable.csv?v=1&csvType=full&useColumnShortNames=true")
-
-# Fetch the metadata
-metadata <- fromJSON("https://ourworldindata.org/grapher/labor-productivity-per-hour-pennworldtable.metadata.json?v=1&csvType=full&useColumnShortNames=true")
-
-# Save the data to CSV
-output_path <- "labor_productivity.csv"
-write.csv(df, output_path, row.names = FALSE)
-print(paste("Data saved to", output_path))
-```
-
-## Cómo obtener la URL
-1. Vaya a un gráfico en [Our World in Data](https://ourworldindata.org/).
-2. Haga clic en la pestaña "Download".
-3. Copie el enlace del archivo CSV (full data).
+## Inputs
+- **Obligatorios**
+  - `url`: URL directa del archivo CSV proporcionada por OWID para un gráfico específico.
 
 ## Cómo elegir inputs
-1. Navegue por [Our World in Data](https://ourworldindata.org/) hasta encontrar el gráfico deseado.
-2. Seleccione la pestaña "Download" bajo el gráfico.
-3. Haga clic derecho en el botón de descarga "Full data (CSV)" y seleccione "Copiar dirección del enlace".
-4. Pegue esa URL en su script de R dentro de `read.csv`.
+1) Vaya a un gráfico en [Our World in Data](https://ourworldindata.org/).
+2) Haga clic en la pestaña "Download".
+3) Haga clic derecho en el botón de descarga "Full data (CSV)" y seleccione "Copiar dirección del enlace".
+4) Use esa URL en su script de R.
 
+## Sintaxis de la API
+- **Formato general:**
+  ```
+  https://ourworldindata.org/grapher/{chart-slug}.csv?v=1&csvType=full&useColumnShortNames=true
+  ```
+
+- **Ejemplo:**
+  ```
+  https://ourworldindata.org/grapher/labor-productivity-per-hour-pennworldtable.csv?v=1&csvType=full&useColumnShortNames=true
+  ```
+
+## Output
+- Un `data.frame` con los datos descargados desde OWID.
+
+## Enlaces útiles
+- Portal: https://ourworldindata.org/

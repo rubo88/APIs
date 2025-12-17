@@ -2,6 +2,7 @@
 
 Este repositorio reúne scripts listos para usar que descargan datos económicos de fuentes públicas. El objetivo de este documento es explicar, en términos sencillos, qué es una API, por qué nos interesa usarla y cómo empezar en 10 minutos con los ejemplos incluidos para Python, R, MATLAB y Stata.
 
+La versión más reciente de este repositorio está disponible en [https://github.com/rubo88/APIs](https://github.com/rubo88/APIs).
 ## ¿Qué es una API y por qué usarla?
 
 - **API**: una forma estándar de pedir datos a un servidor, como si fuera una “ventanilla” automatizada. En lugar de descargar manualmente ficheros desde una web, un script hace la petición y recibe una base de datos completa o una parte de ella filtrada.
@@ -53,12 +54,13 @@ Ejemplos sencillos de uso para cuatro lenguajes de programación: Python, R, MAT
 
 3) **Lee la documentación específica**: echa un vistazo al `*_readme.md` de la fuente para ver los parámetros y ejemplos.
 
-4) **Ejecuta el ejemplo**: los ejemplos generan un CSV en la misma carpeta. Así te aseguras de que todo  está funcionando correctamente.
+4) **Elige el ejemplo**: en cada fuente hay varios ejemplos de código según el nivel de uso que quieras hacer. Lo más sencillo es el ejemplo `*_onlylink` que descarga y lee el csv directamente del link de la API en unas pocas lineas. Para integrar en un proyecto, lo mejor es usar el ejemplo `*_function` que te permite usar la función principal para descargar los datos con opciones de filtros y otros parámetros.
 
+5) **Ejecuta el ejemplo**: los ejemplos generan un CSV en la misma carpeta. Así te aseguras de que todo  está funcionando correctamente.
 
-5) **Adapta el ejemplo**: cambia identificadores de series, países, fechas u otros filtros buscando en la web de la fuente o preguntando al Agente Copilot.
+6) **Adapta el ejemplo**: cambia identificadores de series, países, fechas u otros filtros buscando en la web de la fuente o preguntando al Agente Copilot.
 
-6) **Intégralo en tu propio proyecto**
+7) **Intégralo en tu propio proyecto**
 
 
 > **Claves de API (si aplica)**: Algunas fuentes pueden requerir una clave de acceso. Consulta el `*_readme.md` de esa fuente para obtenerla y configurarla (normalmente como variable de entorno) antes de ejecutar el ejemplo. 
